@@ -1,13 +1,44 @@
 // Register.jsx
-import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const { googleSignIn } = use(AuthContext);
+  const { googleSignIn, login } = use(AuthContext);
+  const [success, setSuccess] = useState(null);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    login(email, password)
+      .then((result) => {
+        Swal.fire({
+          title: "Success",
+          text: `Login Successfull`,
+          icon: "success",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
+        setSuccess("User Login Successfully!!");
+        e.target.reset();
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Success",
+          text: `Login Unsuccessful`,
+          icon: "success",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
+      });
+  };
   const handleGoogleSign = () => {
     googleSignIn()
       .then((result) => {
@@ -43,7 +74,7 @@ const Login = () => {
           Login
         </h2>
 
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
             type="email"
             name="email"
@@ -58,7 +89,7 @@ const Login = () => {
             className={inputClasses}
             required
           />
-
+          <p className="text-green-500 text-center">{success}</p>
           {/* Register Button */}
           <button
             type="submit"

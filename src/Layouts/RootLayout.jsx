@@ -6,7 +6,6 @@ import Banner from '../Components/Banner';
 
 const RootLayout = () => {
     const location = useLocation();
-    console.log(location);
     return (
         <div>
              <NavBar></NavBar>

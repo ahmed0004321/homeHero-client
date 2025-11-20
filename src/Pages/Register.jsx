@@ -1,5 +1,5 @@
 // Register.jsx
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -7,13 +7,74 @@ import Swal from "sweetalert2";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { googleSignIn } = use(AuthContext);
+  const { googleSignIn, register, user } = use(AuthContext);
+  const [passValidation, setPassValidation] = useState("");
+  console.log(user);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(name, photo, password, email);
+
+    const upperCaseRegex = /[A-Z]/;
+    const lowerCaseRegex = /[a-z]/;
+    const minLength = 6;
+
+    if (!upperCaseRegex.test(password)) {
+      setPassValidation("Password Must be Uppercase!!");
+      return;
+    } else if (!lowerCaseRegex.test(password)) {
+      setPassValidation("Password Must be Loawercase!!");
+      return;
+    } else if (password.length < minLength) {
+      setPassValidation("Password Must be More then 6 Charecter!!");
+      return;
+    }
+
+    register(email, password)
+    .then((result) => {
+      Swal.fire({
+        title: "Success",
+        text: "Registered Successfully",
+        icon: "success",
+        background: "rgba(255,255,255,0.08)",
+        color: "white",
+        backdrop: "rgba(0,0,0,0.3)",
+      });
+  
+      navigate("/");
+    })
+    .catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        Swal.fire({
+          title: "Error",
+          text: "This email is already registered!",
+          icon: "error",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: error.message,
+          icon: "error",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
+      }
+    });
+  }
+
   const handleGoogleSign = () => {
     googleSignIn()
       .then((result) => {
         Swal.fire({
           title: "Success",
-          text: "Register Successful",
+          text: "Registered Successful",
           icon: "success",
           background: "rgba(255,255,255,0.08)",
           color: "white",
@@ -43,7 +104,7 @@ const Register = () => {
           Register
         </h2>
 
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleRegister} className="flex flex-col gap-4">
           <input
             type="text"
             name="name"
@@ -60,7 +121,7 @@ const Register = () => {
           />
           <input
             type="text"
-            name="photoURL"
+            name="photo"
             placeholder="Photo URL"
             className={inputClasses}
           />
@@ -71,6 +132,7 @@ const Register = () => {
             className={inputClasses}
             required
           />
+          <p className="text-red-500 text-center">{passValidation}</p>
 
           {/* Register Button */}
           <button

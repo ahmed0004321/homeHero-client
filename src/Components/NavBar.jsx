@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const NavBar = () => {
   const { user, setUser, logOut, loading } = use(AuthContext);
-  const [mobileOpen, setMobileOpen] = useState(false); // 🔥 NEW
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogOut = () => {
     logOut().then(() => setUser(null));
@@ -22,7 +22,6 @@ const NavBar = () => {
   return (
     <nav className="w-full fixed top-0 left-0 z-50 glass-nav">
       <div className="mx-auto max-w-[1440px] flex items-center justify-between py-4 px-6">
-
         {/* Left: Logo */}
         <div className="text-xl font-semibold text-white nav-title">
           HomeHero
@@ -64,57 +63,61 @@ const NavBar = () => {
             Services
           </NavLink>
 
-          <NavLink
-            to="/myservices"
-            className={({ isActive }) =>
-              `px-4 py-1 rounded-full transition ${
-                isActive
-                  ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
-                  : "hover:text-purple-300"
-              }`
-            }
-          >
-            My Services
-          </NavLink>
+          {user && (
+            <>
+              <NavLink
+                to="/myservices"
+                className={({ isActive }) =>
+                  `px-4 py-1 rounded-full transition ${
+                    isActive
+                      ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
+                      : "hover:text-purple-300"
+                  }`
+                }
+              >
+                My Services
+              </NavLink>
 
-          <NavLink
-            to="/addservices"
-            className={({ isActive }) =>
-              `px-4 py-1 rounded-full transition ${
-                isActive
-                  ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
-                  : "hover:text-purple-300"
-              }`
-            }
-          >
-            Add Services
-          </NavLink>
+              <NavLink
+                to="/addservices"
+                className={({ isActive }) =>
+                  `px-4 py-1 rounded-full transition ${
+                    isActive
+                      ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
+                      : "hover:text-purple-300"
+                  }`
+                }
+              >
+                Add Services
+              </NavLink>
 
-          <NavLink
-            to="/mybookings"
-            className={({ isActive }) =>
-              `px-4 py-1 rounded-full transition ${
-                isActive
-                  ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
-                  : "hover:text-purple-300"
-              }`
-            }
-          >
-            My Bookings
-          </NavLink>
+              <NavLink
+                to="/mybookings"
+                className={({ isActive }) =>
+                  `px-4 py-1 rounded-full transition ${
+                    isActive
+                      ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
+                      : "hover:text-purple-300"
+                  }`
+                }
+              >
+                My Bookings
+              </NavLink>
 
-          <NavLink
-            to="/profile"
-            className={({ isActive }) =>
-              `px-4 py-1 rounded-full transition ${
-                isActive
-                  ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
-                  : "hover:text-purple-300"
-              }`
-            }
-          >
-            Profile
-          </NavLink>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  `px-4 py-1 rounded-full transition ${
+                    isActive
+                      ? "bg-white/10 backdrop-blur-lg border border-white/20 shadow-md text-white"
+                      : "hover:text-purple-300"
+                  }`
+                }
+              >
+                Profile
+              </NavLink>
+            </>
+          )}
         </ul>
 
         {/* Right Side (Avatar or Login/Register) */}
@@ -143,7 +146,7 @@ const NavBar = () => {
             >
               <img
                 className="w-full h-full object-cover rounded-full"
-                src={user?.photoURL || "https://via.placeholder.com/150"}
+                src={user?.photoURL || "https://placeholder.co/150"}
                 alt="User"
               />
             </div>
@@ -157,7 +160,10 @@ const NavBar = () => {
               }}
             >
               <li>
-                <Link to='/profile' className="block px-2 py-1 hover:bg-white/10 rounded transition">
+                <Link
+                  to="/profile"
+                  className="block px-2 py-1 hover:bg-white/10 rounded transition"
+                >
                   Profile
                 </Link>
               </li>
@@ -204,12 +210,24 @@ const NavBar = () => {
             borderTop: "1px solid rgba(255,255,255,0.12)",
           }}
         >
-          <NavLink to="/" className="block">Home</NavLink>
-          <NavLink to="/services" className="block">Services</NavLink>
-          <NavLink to="/myservices" className="block">My Services</NavLink>
-          <NavLink to="/addservices" className="block">Add Services</NavLink>
-          <NavLink to="/mybookings" className="block">My Bookings</NavLink>
-          <NavLink to="/profile" className="block">Profile</NavLink>
+          <NavLink to="/" className="block">
+            Home
+          </NavLink>
+          <NavLink to="/services" className="block">
+            Services
+          </NavLink>
+          <NavLink to="/myservices" className="block">
+            My Services
+          </NavLink>
+          <NavLink to="/addservices" className="block">
+            Add Services
+          </NavLink>
+          <NavLink to="/mybookings" className="block">
+            My Bookings
+          </NavLink>
+          <NavLink to="/profile" className="block">
+            Profile
+          </NavLink>
 
           {!user && (
             <div className="flex gap-4 pt-4">
