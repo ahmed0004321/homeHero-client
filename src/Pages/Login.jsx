@@ -30,9 +30,9 @@ const Login = () => {
       })
       .catch((error) => {
         Swal.fire({
-          title: "Success",
-          text: `Login Unsuccessful`,
-          icon: "success",
+          title: "Error",
+          text: error.message,
+          icon: "error",
           background: "rgba(255,255,255,0.08)",
           color: "white",
           backdrop: "rgba(0,0,0,0.3)",
