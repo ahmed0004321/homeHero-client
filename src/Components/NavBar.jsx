@@ -157,9 +157,9 @@ const NavBar = () => {
               }}
             >
               <li>
-                <a className="block px-2 py-1 hover:bg-white/10 rounded transition">
+                <Link to='/profile' className="block px-2 py-1 hover:bg-white/10 rounded transition">
                   Profile
-                </a>
+                </Link>
               </li>
               <li>
                 <a className="block px-2 py-1 hover:bg-white/10 rounded transition">
@@ -195,7 +195,6 @@ const NavBar = () => {
         )}
       </div>
 
-      {/* 🔥 Mobile Menu */}
       {mobileOpen && (
         <div
           className="md:hidden w-full px-6 py-4 text-white space-y-4"
