@@ -90,7 +90,7 @@ const AllServices = () => {
                     </div>
 
                     <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
-                      Book Now
+                      Service Details
                     </button>
                   </div>
                 </div>
