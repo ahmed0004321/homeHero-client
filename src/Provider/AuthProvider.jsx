@@ -4,6 +4,7 @@ import { auth } from "../Firebase/Firebase.config";
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
+    const [services, setServices] = useState([]);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
     console.log(user);
@@ -46,7 +47,9 @@ const AuthProvider = ({ children }) => {
     setLoading,
     login,
     register,
-    updateUser
+    updateUser,
+    services,
+    setServices
   };
   return <AuthContext value={authInfo}>{children}</AuthContext>;
 };

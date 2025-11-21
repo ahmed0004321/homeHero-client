@@ -66,7 +66,7 @@ const NavBar = () => {
           {user && (
             <>
               <NavLink
-                to="/myservices"
+                to="/myServices"
                 className={({ isActive }) =>
                   `px-4 py-1 rounded-full transition ${
                     isActive
@@ -79,7 +79,7 @@ const NavBar = () => {
               </NavLink>
 
               <NavLink
-                to="/addservices"
+                to="/addServices"
                 className={({ isActive }) =>
                   `px-4 py-1 rounded-full transition ${
                     isActive
@@ -92,7 +92,7 @@ const NavBar = () => {
               </NavLink>
 
               <NavLink
-                to="/mybookings"
+                to="/myBookings"
                 className={({ isActive }) =>
                   `px-4 py-1 rounded-full transition ${
                     isActive
@@ -216,13 +216,13 @@ const NavBar = () => {
           <NavLink to="/services" className="block">
             Services
           </NavLink>
-          <NavLink to="/myservices" className="block">
+          <NavLink to="/myServices" className="block">
             My Services
           </NavLink>
-          <NavLink to="/addservices" className="block">
+          <NavLink to="/addServices" className="block">
             Add Services
           </NavLink>
-          <NavLink to="/mybookings" className="block">
+          <NavLink to="/myBookings" className="block">
             My Bookings
           </NavLink>
           <NavLink to="/profile" className="block">
