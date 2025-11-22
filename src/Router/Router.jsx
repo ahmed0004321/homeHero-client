@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import Services from "../Pages/Services";
 import AddServices from "../Pages/AddServices";
 import MyServices from "../Pages/MyServices";
+import UpdateService from "../Pages/UpdateService";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
             {
                 path: '/addServices',
                 element: <AddServices></AddServices>
+            },
+            {
+                path: '/updateService/:id',
+                element: <UpdateService></UpdateService>
+            },
+            {
+                path: '*',
+                element: <p>Error 404!!</p>
             }
         ]
     }

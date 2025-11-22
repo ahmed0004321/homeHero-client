@@ -3,6 +3,7 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router";
 
 const MyServices = () => {
   const { user, setServices, services } = use(AuthContext);
@@ -141,9 +142,9 @@ const MyServices = () => {
                       {/* Actions */}
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 bg-blue-500/20 hover:bg-blue-500/40 rounded-lg transition-all group">
+                          <Link to={`/updateService/${service?._id}`} className="p-2 bg-blue-500/20 hover:bg-blue-500/40 rounded-lg transition-all group">
                             <FiEdit className="text-blue-400 group-hover:scale-110 transition-transform" />
-                          </button>
+                          </Link>
 
                           <button
                             onClick={() => handleDelete(service?._id)}
