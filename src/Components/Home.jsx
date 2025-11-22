@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { use, useEffect } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Link } from "react-router";
 
 const Home = () => {
   const { services, setServices } = use(AuthContext);
-  console.log(services);
   useEffect(() => {
     axios
       .get("http://localhost:3000/home")
@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+ 
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-3">
             Few Services
@@ -27,8 +27,6 @@ const Home = () => {
             Browse our professional home services
           </p>
         </div>
-
-        {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services && Array.isArray(services) && services?.length > 0 ? (
             services.map((service) => (
@@ -42,7 +40,6 @@ const Home = () => {
                   boxShadow: "0 4px 30px rgba(0,0,0,0.2)",
                 }}
               >
-                {/* Image Section */}
                 <div className="relative overflow-hidden h-48">
                   <img
                     src={service?.imageUrl}
@@ -53,20 +50,15 @@ const Home = () => {
                     {service?.category}
                   </div>
                 </div>
-
-                {/* Content Section */}
                 <div className="p-5 flex flex-col flex-grow">
-                  {/* Service Name */}
+             
                   <h3 className="text-xl font-bold text-white mb-2 line-clamp-1">
                     {service?.serviceName}
                   </h3>
-
-                  {/* Description */}
+ 
                   <p className="text-gray-300 text-sm mb-4 line-clamp-2 flex-grow">
                     {service?.description}
                   </p>
-
-                  {/* Provider Info */}
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                       {service?.providerName?.charAt(0)}
@@ -75,8 +67,6 @@ const Home = () => {
                       {service?.providerName}
                     </span>
                   </div>
-
-                  {/* Price & Button */}
                   <div className="mt-auto">
                     <div className="mb-3">
                       <p className="text-gray-400 text-xs mb-1">
@@ -86,14 +76,11 @@ const Home = () => {
                         ${service?.price}
                       </p>
                     </div>
-
-                    <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
+                    <Link to={`servicesDetails/${service?._id}`} className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
                       Service Details
-                    </button>
+                    </Link>
                   </div>
                 </div>
-
-                {/* Glass Reflection Effect */}
                 <div
                   className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{

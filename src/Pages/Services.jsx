@@ -1,6 +1,7 @@
 import React, { use, useEffect } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import { Link } from "react-router";
 
 const AllServices = () => {
   const { services, setServices } = use(AuthContext);
@@ -89,9 +90,9 @@ const AllServices = () => {
                       </p>
                     </div>
 
-                    <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
+                    <Link to={`/servicesDetails/${service?._id}`} className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
                       Service Details
-                    </button>
+                    </Link>
                   </div>
                 </div>
 

@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const UpdateService = () => {
   const { user } = use(AuthContext);
@@ -41,12 +42,26 @@ const UpdateService = () => {
       .put(`http://localhost:3000/myServicesUpdate/${id}`, updateData)
       .then((res) => {
         console.log("Updated:", res.data);
-        // toast.success("Service updated successfully!");
+        Swal.fire({
+          title: "Success",
+          text: "Update Successfully",
+          icon: "success",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
         navigate("/myServices");
       })
       .catch((err) => {
         console.error(err);
-        // toast.error("Failed to update service");
+        Swal.fire({
+          title: "Error",
+          text: "Update get's Error!",
+          icon: "error",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
       });
   };
 
@@ -66,7 +81,7 @@ const UpdateService = () => {
           </h2>
 
           <form onSubmit={handleUpdate} className="space-y-5">
-            {/* Service Name */}
+             
             <input
               type="text"
               name="serviceName"
@@ -75,8 +90,6 @@ const UpdateService = () => {
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
-
-            {/* Category */}
             <select
               name="category"
               defaultValue={updateServices?.category}
@@ -95,8 +108,6 @@ const UpdateService = () => {
               <option value="Appliance Repair">Appliance Repair</option>
               <option value="Other">Other</option>
             </select>
-
-            {/* Price */}
             <input
               type="number"
               name="price"
@@ -105,8 +116,6 @@ const UpdateService = () => {
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
-
-            {/* Description */}
             <textarea
               name="description"
               placeholder="Service Description"
@@ -115,8 +124,6 @@ const UpdateService = () => {
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             ></textarea>
-
-            {/* Image URL */}
             <input
               type="url"
               name="imageUrl"
@@ -125,8 +132,6 @@ const UpdateService = () => {
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
-
-            {/* Provider Name */}
             <input
               type="text"
               name="providerName"
@@ -135,11 +140,9 @@ const UpdateService = () => {
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
-
-            {/* Update Button */}
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all"
+              className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all"
             >
               Update Service
             </button>
