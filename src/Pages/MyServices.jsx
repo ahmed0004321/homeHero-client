@@ -2,6 +2,7 @@ import React, { use, useEffect } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const MyServices = () => {
   const { user, setServices, services } = use(AuthContext);
@@ -17,6 +18,33 @@ const MyServices = () => {
 
   const handleDelete = (id) => {
     console.log("Delete: ", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:3000/myServicesDelete?id=${id}`)
+          .then((res) => {
+            console.log(res.data);
+
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            setServices((prevServices) =>
+              prevServices.filter((service) => service._id !== id)
+            );
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   };
 
   return (
@@ -137,8 +165,9 @@ const MyServices = () => {
         <div className="mt-6 text-center">
           <p className="text-white text-lg">
             Total Services:{" "}
-            <span className="font-bold text-purple-300">{services?.length || 0}</span>
-
+            <span className="font-bold text-purple-300">
+              {services?.length || 0}
+            </span>
           </p>
         </div>
       </div>

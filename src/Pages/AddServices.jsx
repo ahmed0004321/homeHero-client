@@ -135,7 +135,7 @@ const AddService = () => {
 
           {/* Email */}
           <input
-            type="email"
+            type='hidden'
             name="email"
             defaultValue={user?.email}
             placeholder="Provider Email"
