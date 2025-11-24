@@ -2,13 +2,14 @@ import axios from "axios";
 import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ServicesDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [details, setDetails] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const {user, setUser} = use(AuthContext);
+  const { user, setUser } = use(AuthContext);
 
   console.log(details);
   console.log(user);
@@ -31,15 +32,34 @@ const ServicesDetails = () => {
   const handleBooking = (e) => {
     e.preventDefault();
     const userEmail = e.target.userEmail.value;
+    const serviceId = e.target.serviceId.value;
     const bookingDate = e.target.bookingDate.value;
     const price = e.target.price.value;
 
     const bookingData = {
-        userEmail,
-        bookingDate,
-        price
+      userEmail,
+      serviceId,
+      bookingDate,
+      price,
     };
     console.log(bookingData);
+    axios
+      .post("http://localhost:3000/bookings", bookingData)
+      .then((res) => {
+        console.log("booking SuccessFull", res.data);
+        Swal.fire({
+          title: "Success",
+          text: `Login Successfull`,
+          icon: "success",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          backdrop: "rgba(0,0,0,0.3)",
+        });
+        navigate("/myBookings");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
     //     console.log(bookingData);
 
@@ -98,7 +118,7 @@ const ServicesDetails = () => {
               <div className="text-right">
                 <p className="text-gray-400 text-sm mb-1">Starting from</p>
                 <p className="text-4xl font-bold text-white">
-                  {details?.price}
+                  {details?.price}$
                 </p>
               </div>
             </div>
@@ -193,11 +213,11 @@ const ServicesDetails = () => {
             </div>
             <form onSubmit={handleBooking} className="space-y-4">
               <div>
-                <label className="block text-white text-sm font-semibold mb-2">
+                {/* <label className="block text-white text-sm font-semibold mb-2">
                   Your Email
-                </label>
+                </label> */}
                 <input
-                  type="email"
+                  type="hidden"
                   name="userEmail"
                   value={user?.email}
                   className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-gray-400 cursor-not-allowed"
@@ -210,7 +230,7 @@ const ServicesDetails = () => {
                 </label>
                 <input
                   type="text"
-                  name='ServiceId'
+                  name="serviceId"
                   value={details?._id}
                   className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-gray-400 cursor-not-allowed"
                 />
@@ -232,7 +252,7 @@ const ServicesDetails = () => {
                 </label>
                 <input
                   type="text"
-                  name='price'
+                  name="price"
                   defaultValue={details?.price}
                   className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-gray-400 cursor-not-allowed"
                 />

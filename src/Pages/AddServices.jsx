@@ -79,23 +79,22 @@ const AddService = () => {
             className={inputClasses}
             required
           />
-
-          {/* Category */}
           <select name="category" className={inputClasses} required>
             <option value="" disabled selected>
               Select Category
             </option>
+            <option value="">Select Category</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Plumbing">Plumbing</option>
             <option value="Electrician">Electrician</option>
-            <option value="Plumber">Plumber</option>
-            <option value="Cleaner">Cleaner</option>
-            <option value="Handyman">Handyman</option>
+            <option value="Gardening">Gardening</option>
             <option value="HVAC">HVAC</option>
-            <option value="Carpenter">Carpenter</option>
-            <option value="Painter">Painter</option>
+            <option value="Pest Control">Pest Control</option>
+            <option value="Carpentry">Carpentry</option>
+            <option value="Painting">Painting</option>
+            <option value="Appliance Repair">Appliance Repair</option>
             <option value="Other">Other</option>
           </select>
-
-          {/* Price */}
           <input
             type="number"
             name="price"
@@ -105,8 +104,6 @@ const AddService = () => {
             step="0.01"
             required
           />
-
-          {/* Description */}
           <textarea
             name="description"
             placeholder="Service Description"
@@ -114,8 +111,6 @@ const AddService = () => {
             rows="4"
             required
           />
-
-          {/* Image URL */}
           <input
             type="url"
             name="imageUrl"
@@ -132,18 +127,14 @@ const AddService = () => {
             className={inputClasses}
             required
           />
-
-          {/* Email */}
           <input
-            type='hidden'
+            type="hidden"
             name="email"
             defaultValue={user?.email}
             placeholder="Provider Email"
             className={inputClasses}
             required
           />
-
-          {/* Submit Button */}
           <button
             type="submit"
             className="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all flex items-center justify-center gap-2"

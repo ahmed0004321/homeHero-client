@@ -23,9 +23,11 @@ const NavBar = () => {
     <nav className="w-full fixed top-0 left-0 z-50 glass-nav">
       <div className="mx-auto max-w-[1440px] flex items-center justify-between py-4 px-6">
         {/* Left: Logo */}
-        <div className="text-xl font-semibold text-white nav-title">
-          HomeHero
-        </div>
+        <Link to="/">
+          <div className="text-xl font-semibold text-white nav-title">
+            HomeHero
+          </div>
+        </Link>
 
         {/* Hamburger Button (Mobile Only) */}
         <button
