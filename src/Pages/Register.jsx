@@ -90,7 +90,7 @@ const Register = () => {
     "w-full p-3 rounded-full border border-white/20 bg-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-300";
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br ">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div
         className="w-full max-w-md p-8 rounded-2xl shadow-xl relative backdrop-blur-lg border border-white/20"
         style={{

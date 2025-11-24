@@ -15,7 +15,6 @@ const Profile = () => {
     e.preventDefault();
 
     try {
-      // Call your AuthProvider updateUser method
       await updateUser({ displayName: name, photoURL: photo });
       navigate('/profile');
       Swal.fire({
@@ -72,7 +71,7 @@ const Profile = () => {
           Email: {user?.email}
         </p>
 
-        {/* User Info */}
+      
         <form className="space-y-4" onSubmit={handleUpdateProfile}>
           <div className="text-white">
             <label className="block text-sm mb-1">Name</label>

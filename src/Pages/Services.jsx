@@ -88,7 +88,7 @@ const AllServices = () => {
                   </p>
 
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                       {service?.providerName?.charAt(0)}
                     </div>
                     <span className="text-gray-300 text-sm truncate">

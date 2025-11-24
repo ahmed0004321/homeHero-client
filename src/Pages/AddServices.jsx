@@ -56,7 +56,7 @@ const AddService = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br py-12">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div
         className="w-full max-w-2xl p-8 rounded-2xl shadow-xl relative backdrop-blur-lg border border-white/20"
         style={{

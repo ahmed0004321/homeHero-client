@@ -14,7 +14,7 @@ const RootLayout = () => {
         <div>
              <NavBar></NavBar>
              {
-                location.pathname === '/' && <><Banner></Banner><Slider></Slider></> 
+                location.pathname === '/' && <><Slider></Slider></> 
              }
             <main className='pt-24 min-h-[calc(100vh-100px)] mx-auto max-w-[1440px]'>
                 <Outlet></Outlet>
