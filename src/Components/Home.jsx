@@ -76,7 +76,7 @@ const Home = () => {
                         ${service?.price}
                       </p>
                     </div>
-                    <Link to={`servicesDetails/${service?._id}`} className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
+                    <Link to={`/servicesDetails/${service?._id}`} className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
                       Service Details
                     </Link>
                   </div>
