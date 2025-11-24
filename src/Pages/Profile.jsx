@@ -2,12 +2,11 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { user, updateUser } = useContext(AuthContext);
-
-  // Local state to hold editable inputs
+  const { user, updateUser, loading } = useContext(AuthContext);
   const [name, setName] = useState(user?.displayName || "");
   const [photo, setPhoto] = useState(user?.photoURL || "");
 
@@ -16,7 +15,7 @@ const Profile = () => {
 
     try {
       await updateUser({ displayName: name, photoURL: photo });
-      navigate('/profile');
+      navigate("/profile");
       Swal.fire({
         title: "Success",
         text: "Profile updated successfully!",
@@ -37,6 +36,14 @@ const Profile = () => {
       });
     }
   };
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -51,8 +58,6 @@ const Profile = () => {
         <h2 className="text-2xl font-bold text-white text-center mb-6">
           My Profile
         </h2>
-
-        {/* User Image */}
         <div className="flex justify-center mb-6">
           <img
             className="w-30 h-30 object-cover rounded-full"
@@ -64,14 +69,9 @@ const Profile = () => {
         <p className="text-white mb-4">
           Last Login: {user?.metadata?.lastSignInTime}
         </p>
-        <p className="text-white font-bold mb-4">
-          Name: {user?.displayName}
-        </p>
-        <p className="text-white font-bold mb-4">
-          Email: {user?.email}
-        </p>
+        <p className="text-white font-bold mb-4">Name: {user?.displayName}</p>
+        <p className="text-white font-bold mb-4">Email: {user?.email}</p>
 
-      
         <form className="space-y-4" onSubmit={handleUpdateProfile}>
           <div className="text-white">
             <label className="block text-sm mb-1">Name</label>

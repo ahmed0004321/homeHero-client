@@ -11,6 +11,7 @@ import MyServices from "../Pages/MyServices";
 import UpdateService from "../Pages/UpdateService";
 import ServicesDetails from "../Pages/ServicesDetails";
 import MyBookings from "../Pages/MyBookings";
+import Error404 from "../Pages/Error404";
 
 const router = createBrowserRouter([
     {
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '*',
-                element: <p>Error 404!!</p>
+                element: <Error404></Error404>
             }
         ]
     }

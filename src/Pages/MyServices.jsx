@@ -4,9 +4,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const MyServices = () => {
-  const { user, setServices, services } = use(AuthContext);
+  const { user, setServices, services, loading } = use(AuthContext);
 
   useEffect(() => {
     if (!user?.email) return;
@@ -47,6 +48,14 @@ const MyServices = () => {
       }
     });
   };
+  if(loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen py-12 px-4">

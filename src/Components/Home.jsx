@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { use, useEffect } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Home = () => {
-  const { services, setServices } = use(AuthContext);
+  const { services, setServices, loading } = use(AuthContext);
   useEffect(() => {
     axios
       .get("http://localhost:3000/home")
@@ -15,10 +16,17 @@ const Home = () => {
         console.log("Error:", error);
       });
   }, [setServices]);
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
- 
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-3">
             Few Services
@@ -51,11 +59,10 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="p-5 flex flex-col flex-grow">
-             
                   <h3 className="text-xl font-bold text-white mb-2 line-clamp-1">
                     {service?.serviceName}
                   </h3>
- 
+
                   <p className="text-gray-300 text-sm mb-4 line-clamp-2 flex-grow">
                     {service?.description}
                   </p>
@@ -76,7 +83,10 @@ const Home = () => {
                         ${service?.price}
                       </p>
                     </div>
-                    <Link to={`/servicesDetails/${service?._id}`} className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl">
+                    <Link
+                      to={`/servicesDetails/${service?._id}`}
+                      className="w-full btn py-3 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-full shadow-lg transition-all hover:shadow-xl"
+                    >
                       Service Details
                     </Link>
                   </div>

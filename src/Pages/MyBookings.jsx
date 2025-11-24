@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const MyBookings = () => {
+  const { loading } = use(AuthContext);
   const [booking, setBooking] = useState([]);
   useEffect(() => {
     axios
@@ -47,6 +49,14 @@ const MyBookings = () => {
       }
     });
   };
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen py-12 px-4">
       <div className="max-w-7xl mx-auto">

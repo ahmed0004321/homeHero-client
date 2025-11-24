@@ -2,9 +2,10 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { Link } from "react-router";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const AllServices = () => {
-  const { services, setServices } = use(AuthContext);
+  const { services, setServices, loading } = use(AuthContext);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
@@ -25,6 +26,15 @@ const AllServices = () => {
     const max = maxPrice ? Number(maxPrice) : Infinity;
     return price >= min && price <= max;
   });
+
+  if(loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">

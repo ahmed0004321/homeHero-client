@@ -3,13 +3,14 @@ import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const ServicesDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [details, setDetails] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const { user, setUser } = use(AuthContext);
+  const { user, setUser, loading } = use(AuthContext);
 
   console.log(details);
   console.log(user);
@@ -76,7 +77,14 @@ const ServicesDetails = () => {
     //         alert("Booking failed!");
     //       });
   };
-
+  if(loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen py-12 px-4">
       <div className="max-w-7xl mx-auto">

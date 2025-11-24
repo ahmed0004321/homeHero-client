@@ -3,10 +3,11 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const AddService = () => {
   const navigate = useNavigate();
-  const { user } = use(AuthContext);
+  const { user, loading } = use(AuthContext);
   const inputClasses =
     "w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all";
 
@@ -55,6 +56,14 @@ const AddService = () => {
       });
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        {/* <p>Loading...</p> */}
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div
