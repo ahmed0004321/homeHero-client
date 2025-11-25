@@ -38,7 +38,7 @@ const AddService = () => {
 
     //sending data to the backend::
     axios
-      .post("http://localhost:3000/addServices", addServiceData)
+      .post("https://homehero-api-project-server.vercel.app/addServices", addServiceData)
       .then((res) => {
         console.log("Response:", res.data);
         navigate("/services");

@@ -8,7 +8,7 @@ const Home = () => {
   const { services, setServices, loading } = use(AuthContext);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/home")
+      .get("https://homehero-api-project-server.vercel.app/home")
       .then((res) => {
         setServices(res.data);
       })

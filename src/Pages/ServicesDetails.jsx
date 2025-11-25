@@ -17,7 +17,7 @@ const ServicesDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/servicesDetails/${id}`)
+      .get(`https://homehero-api-project-server.vercel.app/servicesDetails/${id}`)
       .then((res) => {
         setDetails(res.data);
       })
@@ -45,7 +45,7 @@ const ServicesDetails = () => {
     };
     console.log(bookingData);
     axios
-      .post("http://localhost:3000/bookings", bookingData)
+      .post("https://homehero-api-project-server.vercel.app/bookings", bookingData)
       .then((res) => {
         console.log("booking SuccessFull", res.data);
         Swal.fire({
@@ -66,7 +66,7 @@ const ServicesDetails = () => {
 
     //     // Send to backend
     //     axios
-    //       .post("http://localhost:3000/bookings", bookingData)
+    //       .post("https://homehero-api-project-server.vercel.app/bookings", bookingData)
     //       .then((res) => {
     //         console.log("Booking successful:", res.data);
     //         setShowModal(false);

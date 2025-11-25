@@ -13,7 +13,7 @@ const MyServices = () => {
     if (!user?.email) return;
 
     axios
-      .get(`http://localhost:3000/myServices?email=${user.email}`)
+      .get(`https://homehero-api-project-server.vercel.app/myServices?email=${user.email}`)
       .then((res) => setServices(res.data))
       .catch((err) => console.log(err));
   }, [user]);
@@ -31,7 +31,7 @@ const MyServices = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/myServicesDelete?id=${id}`)
+          .delete(`https://homehero-api-project-server.vercel.app/myServicesDelete?id=${id}`)
           .then((res) => {
             console.log(res.data);
 

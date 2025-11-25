@@ -42,23 +42,33 @@ const router = createBrowserRouter([
             },
             {
                 path: '/servicesDetails/:id',
-                element: <ServicesDetails></ServicesDetails>,
+                element: <PrivateRoute>
+                    <ServicesDetails></ServicesDetails>
+                </PrivateRoute>
             },
             {
                 path: '/myServices',
-                element: <MyServices></MyServices>
+                element: <PrivateRoute>
+                    <MyServices></MyServices>
+                </PrivateRoute>
             },
             {
                 path: '/addServices',
-                element: <AddServices></AddServices>
+                element: <PrivateRoute>
+                    <AddServices></AddServices>
+                </PrivateRoute>
             },
             {
                 path: '/updateService/:id',
-                element: <UpdateService></UpdateService>
+                element: <PrivateRoute>
+                    <UpdateService></UpdateService>
+                </PrivateRoute>
             },
             {
                 path: '/myBookings',
-                element: <MyBookings></MyBookings>
+                element: <PrivateRoute>
+                    <MyBookings></MyBookings>
+                </PrivateRoute>
             },
             {
                 path: '*',

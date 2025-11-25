@@ -12,7 +12,7 @@ const UpdateService = () => {
   console.log(updateServices);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/myServicesUpdate/${id}`)
+      .get(`https://homehero-api-project-server.vercel.app/myServicesUpdate/${id}`)
       .then((res) => {
         setUpdateServices(res.data);
       })
@@ -39,7 +39,7 @@ const UpdateService = () => {
       providerName,
     };
     axios
-      .put(`http://localhost:3000/myServicesUpdate/${id}`, updateData)
+      .put(`https://homehero-api-project-server.vercel.app/myServicesUpdate/${id}`, updateData)
       .then((res) => {
         console.log("Updated:", res.data);
         Swal.fire({

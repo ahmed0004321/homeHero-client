@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const AllServices = () => {
   const { services, setServices, loading } = use(AuthContext);
   const [minPrice, setMinPrice] = useState("");
@@ -11,7 +12,7 @@ const AllServices = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allServices")
+      .get("https://homehero-api-project-server.vercel.app/allServices")
       .then((res) => {
         setServices(res.data);
       })

@@ -10,7 +10,7 @@ const MyBookings = () => {
   const [booking, setBooking] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/myBookings")
+      .get("https://homehero-api-project-server.vercel.app/myBookings")
       .then((res) => {
         console.log("get ALL mybooking Data seccessfull", res.data);
         setBooking(res.data);
@@ -33,7 +33,7 @@ const MyBookings = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/myBookings?id=${id}`)
+          .delete(`https://homehero-api-project-server.vercel.app/myBookings?id=${id}`)
           .then((res) => {
             console.log(res.data);
             Swal.fire({
