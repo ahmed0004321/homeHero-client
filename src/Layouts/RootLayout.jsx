@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from '../Components/NavBar';
 import { Outlet, useLocation } from 'react-router';
 import Footer from '../Components/Footer';
-import Banner from '../Components/Banner';
 import Slider from '../Components/Slider';
 import Works from '../Components/Works';
 import MarqueeCom from '../Components/ScrollBar';
